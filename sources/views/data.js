@@ -50,13 +50,15 @@ export default class DataView extends JetView{
 							view: "button",
 							id: "btnAddCountry",
 							value: "Add Country",
-							css: "webix_primary"
+							css: "webix_primary",
+							click:() => this.doAddClick(webix.$$("countTable"), { "Name": "New Country" })
 						},
 						{
 							view: "button",
 							id: "btnDeleteCountry",
 							value: "Delete Country",
-							css: "webix_primary"
+							css: "webix_primary",
+							click:() => this.doDeleteClick(webix.$$("countTable"))
 						}
 					]
 				}
@@ -103,13 +105,15 @@ export default class DataView extends JetView{
 							view: "button",
 							id: "btnAddStatus",
 							value: "Add Status",
-							css: "webix_primary"
+							css: "webix_primary",
+							click:() => this.doAddClick(webix.$$("statTable"), { "Name": "New Status", "Icon": "New Icon" })
 						},
 						{
 							view: "button",
 							id: "btnDeleteStatus",
 							value: "Delete Status",
-							css: "webix_primary"
+							css: "webix_primary",
+							click:() => this.doDeleteClick(webix.$$("statTable"))
 						}
 					]
 				}
@@ -140,5 +144,25 @@ export default class DataView extends JetView{
 	init(){
 		webix.$$("countTable").parse(countries);
 		webix.$$("statTable").parse(statuses);
+	}
+	doAddClick(item, object){
+		item.add(object, 0);
+	}
+	doDeleteClick(item){
+		let sel = item.getSelectedId();
+		if (sel) {
+			webix
+				.confirm({
+					title: "Remove this item",
+					text: "Are you sure you want to remove this item?"
+				})
+				.then(function() {
+					item.remove(sel);
+					webix.message("Item removing is confirmed");
+				})
+				.fail(function() {
+					webix.message("Item removing is rejected");
+				});
+		}
 	}
 }
