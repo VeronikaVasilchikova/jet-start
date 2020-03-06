@@ -16,24 +16,8 @@ export default class GridView extends JetView {
 					scroll: "y",
 					editable: true,
 					autoConfig: true,
-					editaction: "dblclick",
-					columns: [
-						{
-							id: "id",
-							header: "#",
-							width: 60,
-							sort: "int"
-						},
-						{
-							id: "Name",
-							fillspace: true,
-							header: "Name",
-							sort: "string",
-							editor:"text"
-						}
-					]
+					editaction: "dblclick"
 				},
-
 			]
 		};
 
@@ -45,14 +29,14 @@ export default class GridView extends JetView {
 					localId: "btnAdd",
 					value: "Add",
 					css: "webix_primary",
-					click:() => this.doAddClick(this.$$("templateDatatable"), { "Name": "New Item" })
+					click:() => this.doAddClick(this.table, {})
 				},
 				{
 					view: "button",
 					localId: "btnDelete",
 					value: "Delete",
 					css: "webix_primary",
-					click:() => this.doDeleteClick(this.$$("templateDatatable"))
+					click:() => this.doDeleteClick(this.table)
 				}
 			]
 		};
@@ -62,7 +46,8 @@ export default class GridView extends JetView {
 		};
 	}
 	init() {
-		this.$$("templateDatatable").parse(this._gridData);
+		this.table = this.$$("templateDatatable");
+		this.table.parse(this._gridData);
 	}
 	doAddClick(item, object){
 		item.add(object, 0);

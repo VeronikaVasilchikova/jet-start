@@ -6,8 +6,8 @@ export default class DataView extends JetView{
 	config(){
 		const tabbar = {
 			view: "tabbar",
-			multiview: true,
 			value: "countriesTable",
+			multiview: true,
 			options: [
 				{ value: "Countries", id: "countriesTable" },
 				{ value: "Statuses", id: "statusesTable" },
