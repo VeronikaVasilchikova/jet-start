@@ -27,7 +27,7 @@ export default class DataView extends JetView{
 				{
 					cells:[
 						{id: "countriesTable", rows: [new GridView(this.app, "", countries)]},
-						{id: "statusesTable", rows: [{ $subview: new GridView(this.app, "", statuses) }]}
+						{id: "statusesTable", rows: [new GridView(this.app, "", statuses) ]}
 					]
 				}
 			]
