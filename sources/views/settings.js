@@ -17,7 +17,6 @@ export default class SettingsView extends JetView{
 			type:"clean",
 			rows: [
 				{
-					view: "template",
 					template: "Settings",
 					type: "header",
 					css:"webix_dark",

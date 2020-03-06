@@ -123,7 +123,6 @@ export default class DataView extends JetView{
 		const ui = {
 			rows: [
 				{
-					view: "template",
 					template: "Data",
 					type: "header",
 					css:"webix_dark",

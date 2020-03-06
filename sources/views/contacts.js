@@ -36,7 +36,6 @@ export default class ContactsView extends JetView {
 		const ui = {
 			rows: [
 				{
-					view: "template",
 					template: "Contacts",
 					type: "header",
 					css:"webix_dark",
