@@ -6,7 +6,7 @@ export default class ContactsView extends JetView {
 
 		const listOfUsers = {
 			view: "list",
-			id: "listOfUsers",
+			localId: "listOfUsers",
 			template: `
 				<strong>name:</strong> #Name#
 				<strong>email:</strong> #Email#
@@ -55,6 +55,6 @@ export default class ContactsView extends JetView {
 		return ui;
 	}
 	init() {
-		webix.$$("listOfUsers").parse(contacts);
+		this.$$("listOfUsers").parse(contacts);
 	}
 }
