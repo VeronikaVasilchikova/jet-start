@@ -9,8 +9,8 @@ export default class DataView extends JetView{
 			value: "Countries",
 			localId: "tabbar",
 			options: [
-				{ value: "Countries" },
-				{ value: "Statuses" },
+				{ value: "Countries", id: "countries" },
+				{ value: "Statuses", id: "statuses" },
 			],
 			height: 50
 		};
@@ -26,8 +26,8 @@ export default class DataView extends JetView{
 				tabbar,
 				{
 					cells: [
-						{localId: "Countries", rows: [new GridView(this.app, "", countries)]},
-						{localId: "Statuses", rows: [new GridView(this.app, "", statuses) ]}
+						{localId: "countries", rows: [new GridView(this.app, "", countries)]},
+						{localId: "statuses", rows: [new GridView(this.app, "", statuses) ]}
 					]
 				}
 			]
