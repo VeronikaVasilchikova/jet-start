@@ -30,11 +30,6 @@ export default class ContactsView extends JetView {
 											contacts.remove(id);
 											return false;
 										}
-									},
-									on:{
-										onAfterSelect: (id) => {
-											this.show(`./contacts/form?id=${id}`);
-										},
 									}
 								},
 								{
@@ -44,26 +39,30 @@ export default class ContactsView extends JetView {
 								}
 							]
 						},
-						{ $subview: "form" }
+						{ $subview: true }
 					]
 				}
 			]
 		};
 	}
 	doAddClick(){
-		contacts.add({Name: "", Email: ""}, 0);
+		contacts.add({Name: "", Email: "", Status: "", Country: ""}, 0);
 	}
 	init() {
 		this.listOfUsers = this.$$("listOfUsers");
 		this.listOfUsers.sync(contacts);
-
+	}
+	ready() {
 		this.on(this.app, "onDataEditStop", (data) => {
 			if(data){
 				if(data.id)
 					contacts.updateItem(data.id, data);
 				else
-					contacts.add(data);
+					contacts.add(data, 0);
 			}
+		});
+		this.on(this.listOfUsers, "onAfterSelect", (id)=>{
+			this.show(`../contacts/form?id=${id}`);
 		});
 	}
 	urlChange(view, url){

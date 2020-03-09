@@ -61,9 +61,8 @@ export default class ContactsView extends JetView {
 			]
 		};
 	}
-	urlChange(view){
-		const id = this.getParam("id", true);
-
+	urlChange(view, url){
+		const id = url[0].params.id;
 		if(id)
 			view.setValues(contacts.getItem(id));
 	}
