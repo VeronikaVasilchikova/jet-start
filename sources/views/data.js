@@ -34,6 +34,6 @@ export default class DataView extends JetView{
 		};
 	}
 	init() {
-		this.$$("tabbar").attachEvent("onChange", value => this.$$(value).show());
+		this.$$("tabbar").attachEvent("onChange", id => this.$$(id).show());
 	}
 }
