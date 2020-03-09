@@ -6,13 +6,17 @@ export default class DataView extends JetView{
 	config(){
 		const tabbar = {
 			view: "tabbar",
-			value: "countriesTable",
-			multiview: true,
+			value: "Countries",
 			options: [
-				{ value: "Countries", id: "countriesTable" },
-				{ value: "Statuses", id: "statusesTable" },
+				{ value: "Countries", localId: "countries" },
+				{ value: "Statuses", localId: "statuses" },
 			],
-			height: 50
+			height: 50,
+			on: {
+				onChange(id) {
+					this.$$(id).show();
+				}
+			}
 		};
 
 		return {
@@ -25,9 +29,9 @@ export default class DataView extends JetView{
 				},
 				tabbar,
 				{
-					cells:[
-						{id: "countriesTable", rows: [new GridView(this.app, "", countries)]},
-						{id: "statusesTable", rows: [new GridView(this.app, "", statuses) ]}
+					cells: [
+						{localId: "countries", rows: [new GridView(this.app, "", countries)]},
+						{localId: "statuses", rows: [new GridView(this.app, "", statuses) ]}
 					]
 				}
 			]

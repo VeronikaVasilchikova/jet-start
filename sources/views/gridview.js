@@ -29,14 +29,14 @@ export default class GridView extends JetView {
 					localId: "btnAdd",
 					value: "Add",
 					css: "webix_primary",
-					click:() => this.doAddClick(this.table, {})
+					click: () => this.doAddClick()
 				},
 				{
 					view: "button",
 					localId: "btnDelete",
 					value: "Delete",
 					css: "webix_primary",
-					click:() => this.doDeleteClick(this.table)
+					click:() => this.doDeleteClick()
 				}
 			]
 		};
@@ -49,24 +49,13 @@ export default class GridView extends JetView {
 		this.table = this.$$("templateDatatable");
 		this.table.parse(this._gridData);
 	}
-	doAddClick(item, object){
-		item.add(object, 0);
+	doAddClick(){
+		this.table.add({}, 0);
 	}
-	doDeleteClick(item){
-		let sel = item.getSelectedId();
+	doDeleteClick(){
+		let sel = this.table.getSelectedId();
 		if (sel) {
-			webix
-				.confirm({
-					title: "Remove this item",
-					text: "Are you sure you want to remove this item?"
-				})
-				.then(function() {
-					item.remove(sel);
-					webix.message("Item removing is confirmed");
-				})
-				.fail(function() {
-					webix.message("Item removing is rejected");
-				});
+			this.table.remove(sel);
 		}
 	}
 }
