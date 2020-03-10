@@ -50,12 +50,14 @@ export default class GridView extends JetView {
 		this.table.parse(this._gridData);
 	}
 	doAddClick(){
-		this.table.add({}, 0);
+		//this.table.add({}, 0);
+		this._gridData.add({}, 0);
 	}
 	doDeleteClick(){
 		let sel = this.table.getSelectedId();
 		if (sel) {
-			this.table.remove(sel);
+			//this.table.remove(sel);
+			this._gridData.remove(sel);
 		}
 	}
 }
