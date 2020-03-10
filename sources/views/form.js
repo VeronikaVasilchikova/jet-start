@@ -52,7 +52,7 @@ export default class ContactsView extends JetView {
 							type:"form",
 							click:() => {
 								const values = this.getRoot().getValues();
-								this.app.callEvent("onDataEditStop", [values]);
+								contacts.updateItem(values.id, values);
 							}
 						}
 					]

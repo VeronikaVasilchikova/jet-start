@@ -53,14 +53,6 @@ export default class ContactsView extends JetView {
 		this.listOfUsers.sync(contacts);
 	}
 	ready() {
-		this.on(this.app, "onDataEditStop", (data) => {
-			if(data){
-				if(data.id)
-					contacts.updateItem(data.id, data);
-				else
-					contacts.add(data, 0);
-			}
-		});
 		this.on(this.listOfUsers, "onAfterSelect", (id)=>{
 			this.show(`../contacts/form?id=${id}`);
 		});
