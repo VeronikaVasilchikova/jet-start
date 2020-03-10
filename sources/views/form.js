@@ -1,7 +1,7 @@
 import { JetView } from "webix-jet";
-import { countries } from "models/countries";
-import {statuses } from "models/statuses";
-import { contacts } from "models/contacts";
+import { countries } from "models/countriesCollection";
+import { statuses } from "models/statusesCollection";
+import { contacts } from "models/contactsCollection";
 
 export default class ContactsView extends JetView {
 	config() {
@@ -26,7 +26,7 @@ export default class ContactsView extends JetView {
 					placeholder:"Options",
 					options: {
 						body: {
-							data: countries,
+							collection: countries,
 							template: "#Name#"
 						}
 					}
@@ -38,7 +38,7 @@ export default class ContactsView extends JetView {
 					placeholder:"Options",
 					options: {
 						body: {
-							data: statuses,
+							collection: statuses,
 							template: "#Name#"
 						}
 					}
@@ -51,12 +51,14 @@ export default class ContactsView extends JetView {
 							label:"Save",
 							type:"form",
 							click:() => {
-								const values = this.getRoot().getValues();
-								if(values.id && (values.Name != "" || values.Email != "")) {
-									contacts.updateItem(values.id, values);
-								} else {
-									webix.message("Select other contact to start editing");
-								}
+								contacts.waitData.then(() => {
+									const values = this.getRoot().getValues();
+									if(values.id && (values.Name != "" || values.Email != "")) {
+										contacts.updateItem(values.id, values);
+									} else {
+										webix.message("Select other contact to start editing");
+									}
+								});
 							}
 						}
 					]
@@ -66,8 +68,10 @@ export default class ContactsView extends JetView {
 		};
 	}
 	urlChange(view, url){
-		const id = url[0].params.id;
-		if(id)
-			view.setValues(contacts.getItem(id));
+		contacts.waitData.then(() => {
+			const id = url[0].params.id;
+			if(id)
+				view.setValues(contacts.getItem(id));
+		});
 	}
 }

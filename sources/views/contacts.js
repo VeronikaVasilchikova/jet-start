@@ -27,8 +27,9 @@ export default class ContactsView extends JetView {
 									select: true,
 									onClick: {
 										"wxi-close": function(e, id) {
-											contacts.remove(id);
-											return false;
+											contacts.waitData.then(() => {
+												contacts.remove(id);
+											});
 										}
 									}
 								},
@@ -46,8 +47,10 @@ export default class ContactsView extends JetView {
 		};
 	}
 	doAddClick(){
-		const id = contacts.add({Name: "", Email: "", Status: "", Country: ""}, 0);
-		this.listOfUsers.select(id);
+		contacts.waitData.then(() => {
+			const id = contacts.add({Name: "", Email: "", Status: "", Country: ""}, 0);
+			this.listOfUsers.select(id);
+		})
 	}
 	init() {
 		this.listOfUsers = this.$$("listOfUsers");
@@ -57,7 +60,7 @@ export default class ContactsView extends JetView {
 		});
 	}
 	urlChange(view, url){
-		contacts.waitData.then(()=>{
+		contacts.waitData.then(() => {
 			let id = contacts.getFirstId();
 
 			if(url[1] && url[1].params.id)
