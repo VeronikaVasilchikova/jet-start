@@ -1,7 +1,7 @@
-import {JetView} from "webix-jet";
+import { JetView } from "webix-jet";
 import GridView from "views/gridview";
-import {countries} from "models/countries";
-import {statuses} from "models/statuses";
+import { countries } from "models/countriesCollection";
+import { statuses } from "models/statusesCollection";
 export default class DataView extends JetView{
 	config(){
 		const tabbar = {

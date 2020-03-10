@@ -1,7 +1,7 @@
 import { JetView } from "webix-jet";
-import { countries } from "models/countries";
-import {statuses } from "models/statuses";
-import { contacts } from "models/contacts";
+import { countries } from "models/countriesCollection";
+import { statuses } from "models/statusesCollection";
+import { contacts } from "models/contactsCollection";
 
 export default class ContactsView extends JetView {
 	config() {
@@ -66,8 +66,10 @@ export default class ContactsView extends JetView {
 		};
 	}
 	urlChange(view, url){
-		const id = url[0].params.id;
-		if(id)
-			view.setValues(contacts.getItem(id));
+		contacts.waitData.then(() => {
+			const id = url[0].params.id;
+			if(id)
+				view.setValues(contacts.getItem(id));
+		});
 	}
 }
