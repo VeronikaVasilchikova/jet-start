@@ -16,6 +16,7 @@ export default class SettingsView extends JetView {
 				{
 					view: "segmented",
 					label:_("Language"),
+					localId: "segmented",
 					inputWidth:300,
 					options:[
 						{id:"en", value:"English"},

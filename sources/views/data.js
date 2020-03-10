@@ -6,7 +6,7 @@ export default class DataView extends JetView{
 	config(){
 		const tabbar = {
 			view: "tabbar",
-			value: "Countries",
+			value: "countries",
 			localId: "tabbar",
 			options: [
 				{ value: "Countries", id: "countries" },
