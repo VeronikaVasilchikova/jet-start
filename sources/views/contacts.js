@@ -51,10 +51,8 @@ export default class ContactsView extends JetView {
 	init() {
 		this.listOfUsers = this.$$("listOfUsers");
 		this.listOfUsers.sync(contacts);
-	}
-	ready() {
 		this.on(this.listOfUsers, "onAfterSelect", (id)=>{
-			this.show(`../contacts/form?id=${id}`);
+			this.show(`./form?id=${id}`);
 		});
 	}
 	urlChange(view, url){
