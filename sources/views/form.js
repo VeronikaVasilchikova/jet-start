@@ -51,14 +51,12 @@ export default class ContactsView extends JetView {
 							label:"Save",
 							type:"form",
 							click:() => {
-								contacts.waitData.then(() => {
-									const values = this.getRoot().getValues();
-									if(values.id && (values.Name != "" || values.Email != "")) {
-										contacts.updateItem(values.id, values);
-									} else {
-										webix.message("Select other contact to start editing");
-									}
-								});
+								const values = this.getRoot().getValues();
+								if(values.id && (values.Name != "" || values.Email != "")) {
+									contacts.updateItem(values.id, values);
+								} else {
+									webix.message("Select other contact to start editing");
+								}
 							}
 						}
 					]
