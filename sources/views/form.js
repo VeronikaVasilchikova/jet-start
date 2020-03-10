@@ -26,7 +26,7 @@ export default class ContactsView extends JetView {
 					placeholder:"Options",
 					options: {
 						body: {
-							collection: countries,
+							data: countries,
 							template: "#Name#"
 						}
 					}
@@ -38,7 +38,7 @@ export default class ContactsView extends JetView {
 					placeholder:"Options",
 					options: {
 						body: {
-							collection: statuses,
+							data: statuses,
 							template: "#Name#"
 						}
 					}
