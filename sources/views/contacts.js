@@ -1,5 +1,5 @@
 import { JetView } from "webix-jet";
-import { contacts } from "models/contacts";
+import { contacts } from "models/contactsCollection";
 
 export default class ContactsView extends JetView {
 	config() {
@@ -57,13 +57,15 @@ export default class ContactsView extends JetView {
 		});
 	}
 	urlChange(view, url){
-		let id = contacts.getFirstId();
+		contacts.waitData.then(()=>{
+			let id = contacts.getFirstId();
 
-		if(url[1] && url[1].params.id)
-			id = url[1].params.id;
+			if(url[1] && url[1].params.id)
+				id = url[1].params.id;
 
-		if(id && this.listOfUsers.exists(id)){
-			this.listOfUsers.select(id);
-		}
+			if(id && this.listOfUsers.exists(id)){
+				this.listOfUsers.select(id);
+			}
+		});
 	}
 }
