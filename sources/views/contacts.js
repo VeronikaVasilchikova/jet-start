@@ -46,8 +46,8 @@ export default class ContactsView extends JetView {
 		};
 	}
 	doAddClick(){
-		contacts.add({Name: "", Email: "", Status: "", Country: ""}, 0);
-		this.listOfUsers.select(contacts.getFirstId());
+		const id = contacts.add({Name: "", Email: "", Status: "", Country: ""}, 0);
+		this.listOfUsers.select(id);
 	}
 	init() {
 		this.listOfUsers = this.$$("listOfUsers");
