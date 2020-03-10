@@ -29,7 +29,7 @@ export default class SettingsView extends JetView {
 	}
 	toggleLanguage(){
 		const langs = this.app.getService("locale");
-		const value = this.getRoot().queryView({ view:"segmented" }).getValue();
+		const value = this.$$("segmented").getValue();
 		langs.setLang(value);
 	}
 }
